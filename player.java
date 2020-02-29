@@ -5,16 +5,16 @@ public class player {
         healthCap = h;
         health = h;
         playerWeapon = new weapon(-1, 1, 1);
-        yPos = 0;
-        xPos = 0;
+        yPos = 4;
+        xPos = 4;
     }
 
     private int health;
     private int healthCap;
     private String name;
     private weapon playerWeapon;
-    private int ypos;
-    private int xPos;
+    public int yPos;
+    public int xPos;
 
 
     public void setName(String str) { name = str; }
@@ -30,12 +30,12 @@ public class player {
     public void move (int dir) {
         if(dir == 1)
         {
-        yPos++;
+        yPos--;
         }
         
         if(dir == 2)
         {
-        yPos--; 
+        yPos++; 
         }
         
         if(dir == 3)

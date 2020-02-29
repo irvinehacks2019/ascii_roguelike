@@ -42,8 +42,8 @@ public class mapGenerator {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(new mapGenerator(Integer.parseInt(args[0]), Integer.parseInt((args[1]))));
-    }
+    // public static void main(String[] args) {
+    //     System.out.println(new mapGenerator(Integer.parseInt(args[0]), Integer.parseInt((args[1]))));
+    // }
 
 }
