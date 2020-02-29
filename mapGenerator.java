@@ -48,13 +48,18 @@ public class mapGenerator {
 
         for (int y = 0; y < walls.length; y++) {
             for (int x = 0; x < walls[y].length; x++) {
-                walls[y][x] = (int)(Math.random() * 7);
+                walls[y][x] = (int)(Math.random() * 6);
                 if (walls[y][x] > 5)
                     walls[y][x] = 5;
             }
         }
 
-        
+        //SAFE SPACE
+        //walls[0]
+        for (int x = 0; x < walls[0].length; x++) {
+            if (x > walls[0].length * 2/5 && x < walls[0].length * 3/5)
+                walls[0][x] = 5;
+        }        
 
         int xCoordinate, yCoordinate;
         for (int y = 0; y < walls.length; y++) {
@@ -105,9 +110,6 @@ public class mapGenerator {
 
             }
         }
-
-        //SAFE SPACE
-        //for ()
     }
 
     private int getRelativeCoordinate(int num) {
