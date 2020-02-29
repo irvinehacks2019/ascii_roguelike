@@ -8,9 +8,9 @@ public class Enemy
   protected int range;
   protected char character;
   
-  public Enemy(int xP, int yP, char c)
+  public Enemy(char c, int h, int xP, int yP)
   {
-    hp = 0;
+    hp = h;
     attack = 0;
     isDead = false;
     xPos = xP;
