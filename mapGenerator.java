@@ -50,19 +50,132 @@ public class MapGenerator {
                 isYEdge = y == 0 || y == map.length - 1;
                 if (isXEdge || isYEdge) {
                     map[y][x] = wall;
+                    if (x > map[y].length / 3 && x < map[y].length * 2 / 3)
+                        map[y][x] = space;
                 } else {
                     map[y][x] = space;
                 }
 
-                mapChecker[y][x] = map[y][x] == space;
+                //mapChecker[y][x] = map[y][x] != space;
 
             }
         }
 
-        if (!allSquaresTraversable()) {
-            //System.out.println("A botched map!");
-            fillMap();
+        for (int y = 0; y < walls.length; y++) {
+            for (int x = 0; x < walls[y].length; x++) {
+                walls[y][x] = (int)(Math.random() * 30);
+                if (walls[y][x] > 12)
+                    walls[y][x] = 12;
+            }
         }
+
+        int xCoordinate, yCoordinate;
+        for (int y = 0; y < walls.length; y++) {
+            yCoordinate = getRelativeCoordinate(y);
+            for (int x = 0; x < walls[y].length; x++) {
+                xCoordinate = getRelativeCoordinate(x);
+                map[yCoordinate][xCoordinate] = space;
+                switch (walls[y][x]) {
+                    case 0:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate][xCoordinate + 1] = wall; //RIGHT
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        map[yCoordinate + 1][xCoordinate] = wall; //LOW
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
+                        map[yCoordinate][xCoordinate - 1] = wall; //LEFT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
+                        map[yCoordinate - 1][xCoordinate] = wall; //UP
+                        break;
+                    case 1:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        map[yCoordinate + 1][xCoordinate] = wall; //LOW
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
+                        map[yCoordinate][xCoordinate - 1] = wall; //LEFT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
+                        map[yCoordinate - 1][xCoordinate] = wall; //UP                      
+                        break;
+                    case 2:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate][xCoordinate + 1] = wall; //RIGHT
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
+                        map[yCoordinate][xCoordinate - 1] = wall; //LEFT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
+                        map[yCoordinate - 1][xCoordinate] = wall; //UP
+                        break;
+                    case 3:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate][xCoordinate + 1] = wall; //RIGHT
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        map[yCoordinate + 1][xCoordinate] = wall; //LOW
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
+                        map[yCoordinate - 1][xCoordinate] = wall; //UP                     
+                        break;
+                    case 4:
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        map[yCoordinate + 1][xCoordinate] = wall; //LOW
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
+                        map[yCoordinate][xCoordinate - 1] = wall; //LEFT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
+                        break;
+                    case 5:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
+                        map[yCoordinate][xCoordinate - 1] = wall; //LEFT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
+                        map[yCoordinate - 1][xCoordinate] = wall; //UP                         
+                        break;
+                    case 6:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate][xCoordinate + 1] = wall; //RIGHT
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
+                        map[yCoordinate - 1][xCoordinate] = wall; //UP                          
+                        break;
+                    case 7:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate][xCoordinate + 1] = wall; //RIGHT
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        map[yCoordinate + 1][xCoordinate] = wall; //LOW
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT    
+                        break;
+                    case 8:
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
+                        map[yCoordinate][xCoordinate - 1] = wall; //LEFT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT          
+                        break;
+                    case 9:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
+                        map[yCoordinate - 1][xCoordinate] = wall; //UP                         
+                        break;
+                    case 10:
+                        map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
+                        map[yCoordinate][xCoordinate + 1] = wall; //RIGHT
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        break;
+                    case 11:
+                        map[yCoordinate + 1][xCoordinate + 1] = wall; //LOW-RIGHT
+                        map[yCoordinate + 1][xCoordinate] = wall; //LOW
+                        map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
+                        break;
+                    case 12:
+                    default:
+                        break;
+                }
+            }
+        }
+
+        if (!allSquaresTraversable()) {
+            System.out.println("A botched map!");
+            //fillMap();
+        }
+    }
+
+    private int getRelativeCoordinate(int num) {
+        return 2 + 3 * num;
     }
 
     private boolean allSquaresTraversable() {
@@ -81,7 +194,7 @@ public class MapGenerator {
                     allSquaresUsed = false;
             }
         }
-        //System.out.println("Traversable: " + canReachExits + "\nAll squares used: " + allSquaresUsed);
+        System.out.println("Traversable: " + canReachExits + "\nAll squares used: " + allSquaresUsed);
 
         return canReachExits && allSquaresUsed;
     }
@@ -95,13 +208,13 @@ public class MapGenerator {
         else if (x1 == 0 || y1 == 0 || x1 == map[y2].length - 1 || y1 == map.length - 1)
             return false;
 
-        if (!mapChecker[y1][x1+1])
+        if (map[y1][x1+1] == space && !mapChecker[y1][x1+1])
             output = output && findPath(x1+1, y1, x2, y2);
-        if (!mapChecker[y1][x1-1])
+        if (map[y1][x1-1] == space && !mapChecker[y1][x1-1])
             output = output && findPath(x1-1, y1, x2, y2);
-        if (!mapChecker[y1+1][x1])
+        if (map[y1+1][x1] == space && !mapChecker[y1+1][x1])
             output = output && findPath(x1, y1+1, x2, y2);
-        if (!mapChecker[y1-1][x1])
+        if (map[y1-1][x1] == space && !mapChecker[y1-1][x1])
             output = output && findPath(x1, y1-1, x2, y2);
 
         return output;
