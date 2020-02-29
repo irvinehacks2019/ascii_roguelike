@@ -27,7 +27,7 @@ public class app {
                 dir = 4;
             }
             p.move(dir);
-
+            
             screen[p.yPos][p.xPos] = '@';
             screen[lastY][lastX] = ' ';
 
