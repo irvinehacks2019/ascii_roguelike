@@ -1,0 +1,21 @@
+public class Enemy
+{
+  public int hp;
+  public int attack;
+  
+  public Enemy()
+  {
+    
+  }
+  
+  public int attack()
+  {
+   return attack; 
+  }
+  
+  public void takeDamage(d)
+  {
+   hp = hp -  d;
+  }
+  
+}
