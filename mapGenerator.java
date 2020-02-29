@@ -5,6 +5,9 @@ public class mapGenerator {
     private char wall = '#';
     private char space = ' ';
 
+    public char getBorder() { return border; }
+    public char getWall() { return wall; } 
+    public char getSpace() { return space; }
 
     public mapGenerator(int y, int x) {
         map = new char[y][x];
@@ -31,7 +34,7 @@ public class mapGenerator {
                 isYEdge = y == 0 || y == map.length - 1;
 
                 if (isXEdge || isYEdge) {
-                    map[y][x] = border;
+                    map[y][x] = wall;
                 } else {
                     map[y][x] = space;
                 }
