@@ -1,8 +1,8 @@
 import java.lang.Math;
 
-public class MapGenerator {
+public class mapGenerator {
 
-    private char[][] map;
+    public char[][] map;
     private int[][] walls;
     private boolean[][] mapChecker;
     private char wall = '#';
@@ -12,7 +12,7 @@ public class MapGenerator {
     public char getSpace() { return space; }
     public char[][] getMap() { return map; }
 
-    public MapGenerator(int y, int x) {
+    public mapGenerator(int y, int x) {
         map = new char[y][x];
         mapChecker = new boolean[y][x];
         walls = new int[map.length / 3][ map[0].length / 3];
@@ -223,7 +223,7 @@ public class MapGenerator {
 
 
     public static void main(String[] args) {
-        MapGenerator mg = new MapGenerator(Integer.parseInt(args[0]), Integer.parseInt((args[1])));
+        mapGenerator mg = new mapGenerator(Integer.parseInt(args[0]), Integer.parseInt((args[1])));
         System.out.println(mg);
         System.out.println(mg.wallsToString());
     }

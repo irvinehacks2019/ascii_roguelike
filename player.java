@@ -30,22 +30,22 @@ public class player {
     public void move (int dir) {
         if(dir == 1)
         {
-        yPos--;
+            yPos--;
         }
         
         if(dir == 2)
         {
-        yPos++; 
+            yPos++; 
         }
         
         if(dir == 3)
         {
-        xPos++;
+            xPos++;
         }
         
         if(dir == 4)
         {
-        xPos--; 
+            xPos--; 
         }
     }
 }
