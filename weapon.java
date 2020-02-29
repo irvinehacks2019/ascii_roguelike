@@ -16,6 +16,10 @@ public class weapon {
     public int GetRange() { return range; }
     public int GetDamage() { return damage; }
 
-    public int DecreaseDurability() { return --durability; }
+    public int DecreaseDurability() {
+        if (--durability == 0)
+            damage = 0;
+        return durability; 
+    }
 
 }
