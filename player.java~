@@ -1,12 +1,12 @@
 public class player {
 
-    public player(int h, String n, int x, int y) {
+    public player(int h, String n) {
         name = n;
         healthCap = h;
         health = h;
         playerWeapon = new weapon(-1, 1, 1);
-        yPos = y;
-        xPos = x;
+        yPos = 4;
+        xPos = 4;
     }
 
     private int health;
@@ -26,16 +26,6 @@ public class player {
     public int getHealthCap() { return healthCap; }
 
     public int decreaseHealth() { return health--;}
-    
-    public void setX(int x)
-    {
-     xPos = x; 
-    }
-    
-    public void setY(int y)
-    {
-     yPos = y; 
-    }
 
     public void move (int dir) {
         if(dir == 1)

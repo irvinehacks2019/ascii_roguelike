@@ -4,10 +4,22 @@ public class app {
 
     public static void main (String[] args) {
         Scanner scanner;
+        int level = 1;
+        
         mapGenerator mg = new mapGenerator(20, 20);
-
-        player p = new player(5, "john");
+        
         char[][] screen = mg.map;
+        
+        player p = new player(5, "john", screen.length/2, 1);
+        
+        while(true)
+        {
+
+        mg = new mapGenerator(20, 20);
+        screen = mg.map;
+        p.setX(screen.length/2);
+        p.setY(3);
+        
 
 
         // for (int i = 0; i < screen.length; i++) {
@@ -41,6 +53,9 @@ public class app {
                 }
                 p.move(dir);
                 
+                if(screen[p.yPos][p.xPos] == '-')
+                  break;
+                
                 if (screen[p.yPos][p.xPos] != mg.getWall()) {
                     screen[p.yPos][p.xPos] = '@';
                     if (dir != -1) {
@@ -51,7 +66,6 @@ public class app {
                     p.xPos = lastX;
                 }
 
-                // minecraft monster mover
                 
 
 
@@ -67,6 +81,7 @@ public class app {
                 System.out.println(p.yPos);
                 System.out.println(dir);
             }
+        }
         }
 
     }

@@ -4,10 +4,20 @@ public class app {
 
     public static void main (String[] args) {
         Scanner scanner;
-        mapGenerator mg = new mapGenerator(9, 9);
+        mapGenerator mg = new mapGenerator(20, 20);
 
         player p = new player(5, "john");
         char[][] screen = mg.map;
+
+
+        // for (int i = 0; i < screen.length; i++) {
+        //     for (int j = 0; j < screen[0].length; j++) {
+        //         System.out.print(screen[i][j]);
+        //     }
+        //     System.out.print("\n");
+        // }
+
+
 
         while (true) {
             scanner = new Scanner(System.in);
@@ -41,6 +51,12 @@ public class app {
                     p.xPos = lastX;
                 }
 
+                // minecraft monster mover
+                
+
+
+
+                // printing press
                 for (int i = 0; i < screen.length; i++) {
                     for (int j = 0; j < screen[0].length; j++) {
                         System.out.print(screen[i][j]);
