@@ -5,6 +5,7 @@ public class mapGenerator {
     public char[][] map;
     private int[][] walls;
     private boolean[][] mapChecker;
+    private char[][] navigator;
     private char wall = '#';
     private char space = ' ';
     private char door = '-';
@@ -18,6 +19,7 @@ public class mapGenerator {
         mapChecker = new boolean[y][x];
         walls = new int[map.length / 3][ map[0].length / 3];
         fillMap();
+        navigator = map;
     }
 
     //DEBUGGING ONLY
@@ -30,6 +32,17 @@ public class mapGenerator {
             output += "\n";
         }
         return output;        
+    }
+
+    public String pathToString() {
+        String output = "";
+        for (int y = 0; y < navigator.length; y++) {
+            for (int x = 0; x < navigator[y].length; x++) {
+                output += navigator[y][x];
+            }
+            output += "\n";
+        }
+        return output;   
     }
 
     public String toString() {
@@ -46,9 +59,11 @@ public class mapGenerator {
         boolean isXEdge = false;
         boolean isYEdge = false;
 
+
+
         for (int y = 0; y < walls.length; y++) {
             for (int x = 0; x < walls[y].length; x++) {
-                walls[y][x] = (int)(Math.random() * 6);
+                walls[y][x] = (int)(Math.random() * 4);
                 if (walls[y][x] > 5)
                     walls[y][x] = 5;
             }
@@ -108,6 +123,20 @@ public class mapGenerator {
 
             }
         }
+
+        if (!findPath(map[0].length / 2, 3, map[0].length / 2, map.length - 1)) {
+            System.out.println("A botched map!");
+            fillMap();
+        }
+
+        //Filling (navigator) with proper values
+        for (int y = 0; y < map.length; y++) {
+            for (int x = 0; x < map.length; x++) {
+                if (mapChecker[y][x] != true)
+                    mapChecker[y][x] = false;
+                navigator[y][x] = (mapChecker[y][x] ? 'T' : 'F');
+            }
+        }
     }
 
     private int getRelativeCoordinate(int num) {
@@ -124,13 +153,13 @@ public class mapGenerator {
             return false;
 
         if (map[y1][x1+1] == space && !mapChecker[y1][x1+1])
-            output = output && findPath(x1+1, y1, x2, y2);
+            output = output || findPath(x1+1, y1, x2, y2);
         if (map[y1][x1-1] == space && !mapChecker[y1][x1-1])
-            output = output && findPath(x1-1, y1, x2, y2);
+            output = output || findPath(x1-1, y1, x2, y2);
         if (map[y1+1][x1] == space && !mapChecker[y1+1][x1])
-            output = output && findPath(x1, y1+1, x2, y2);
+            output = output || findPath(x1, y1+1, x2, y2);
         if (map[y1-1][x1] == space && !mapChecker[y1-1][x1])
-            output = output && findPath(x1, y1-1, x2, y2);
+            output = output || findPath(x1, y1-1, x2, y2);
 
         return output;
     }
