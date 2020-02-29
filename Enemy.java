@@ -5,6 +5,8 @@ public class Enemy
   protected boolean isDead;
   protected int xPos;
   protected int yPos;
+  protected int range;
+  protected char character;
   
   public Enemy()
   {
@@ -13,6 +15,8 @@ public class Enemy
     isDead = false;
     xPos = 0;
     yPos = 0;
+    range = 1;
+    character = 'e';
   }
   
   public int attack()
