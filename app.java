@@ -157,11 +157,11 @@
                         p.xPos = lastX;
                     }
 
-                    for (Enemy enemy : enemies) {
-                        if enemy.checkDead() {
-                            enemy.setDamage(0);
-                            enemy.setCharacter(' ');
-                            screen[enemy.yPos][enemy.xPos] = ' ';
+                    for (Enemy enemy : enemies.enemies) {
+                        if (enemy.isDead) {
+                            enemy.attack = 0;
+                            enemy.character = ' ';
+                            screen[enemy.yPos][enemy.xPos] = enemy.character;
                         }
                     }
 

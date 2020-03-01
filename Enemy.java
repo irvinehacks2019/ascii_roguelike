@@ -30,19 +30,6 @@ public class Enemy
    return hp; 
   }
   
-  public boolean checkDead()
-  {
-   return isDead; 
-  }
-
-  public void setDamae(int atk) {
-    attack = atk;
-  }
-
-  public void setChar(char c) {
-    character = c;
-  }
-  
   public void takeDamage(int d)
   {
     if(isDead = true)
