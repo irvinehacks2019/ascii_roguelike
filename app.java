@@ -91,14 +91,26 @@
 
                     if (enemyIsNearPlayer)
                         p.decreaseHealth();
-                    else if (p.xPos > en.xPos && mg.map[en.yPos][en.xPos + 1] != mg.getWall())
-                        en.move('a'); 
-                    else if (p.xPos < en.xPos && mg.map[en.yPos][en.xPos - 1] != mg.getWall())
+                    else if (p.xPos > en.xPos && mg.map[en.yPos][en.xPos + 1] != mg.getWall()) {
+                        mg.map[en.yPos][en.xPos] = mg.getSpace();
+                        en.move('a');
+                        mg.map[en.yPos][en.xPos] = en.character;
+                    } 
+                    else if (p.xPos < en.xPos && mg.map[en.yPos][en.xPos - 1] != mg.getWall()) {
+                        mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('d');
-                    else if (p.yPos > en.yPos && mg.map[en.yPos + 1][en.xPos] != mg.getWall())
+                        mg.map[en.yPos][en.xPos] = en.character;
+                    }
+                    else if (p.yPos > en.yPos && mg.map[en.yPos + 1][en.xPos] != mg.getWall()) {
+                        mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('w');
-                    else if (p.yPos < en.yPos && mg.map[en.yPos - 1][en.xPos] != mg.getWall())
-                        en.move('s');               
+                        mg.map[en.yPos][en.xPos] = en.character;
+                    }
+                    else if (p.yPos < en.yPos && mg.map[en.yPos - 1][en.xPos] != mg.getWall()) {
+                        mg.map[en.yPos][en.xPos] = mg.getSpace();
+                        en.move('s'); 
+                        mg.map[en.yPos][en.xPos] = en.character;
+                    }              
                 }
 
                 if (input.equals("w") || input.equals("a") || input.equals("s") || input.equals("d") || input.equals(" ")) {
@@ -116,7 +128,6 @@
                         dir = 4;
                     } else if (input.equals(" ")) {
                         dir = -1; 
-                        p.attack(screen, enemies);
                     }
                     p.move(dir);
                     
@@ -136,7 +147,7 @@
                     p.setWeapon(new weapon("Sword", 1, 2));
                     
                     
-                    if (screen[p.yPos][p.xPos] != mg.getWall() ) {
+                    if (screen[p.yPos][p.xPos] != mg.getWall()) {
                         screen[p.yPos][p.xPos] = '@';
                         if (dir != -1) {
                             screen[lastY][lastX] = ' ';
@@ -173,14 +184,7 @@
             }
             if(p.getHealth() < 1)
             {
-            String end = "";
-            end += "  _____                         ____                 \n";
-            end += " / ____|                       / __ \\                \n";
-            end += "| |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __ \n";
-            end += "| | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__| \n";
-            end += "| |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |   \n";
-            end += " \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|   ";
-            System.out.println(end);
+            System.out.println("Game Over");
             break;
             }
             }
