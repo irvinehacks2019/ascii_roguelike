@@ -6,7 +6,9 @@ public class app {
         Scanner scanner;
         player p = new player(5, "john", 0, 0);
         int level = 0;
-
+        
+        while(true)
+        {
         mapGenerator mg = new mapGenerator(20, 40);
         char[][] screen = mg.map;
         p.setX(screen.length/2);
@@ -96,3 +98,4 @@ public class app {
         }
 
     }
+}
