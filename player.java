@@ -4,7 +4,7 @@ public class player {
         name = n;
         healthCap = h;
         health = h;
-        playerWeapon = new weapon(-1, 1, 1);
+        playerWeapon = new weapon("Fists", 1, 1);
         yPos = y;
         xPos = x;
     }
@@ -35,6 +35,11 @@ public class player {
     public void setY(int y)
     {
      yPos = y; 
+    }
+    
+    public int getHealth()
+    {
+      return health;
     }
 
     public void move (int dir) {

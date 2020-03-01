@@ -106,8 +106,6 @@ public class mapGenerator {
                         map[y][x] = door;
                 }
 
-                //mapChecker[y][x] = map[y][x] != space;
-
             }
         }
     }

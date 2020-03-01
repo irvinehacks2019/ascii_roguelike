@@ -1,25 +1,21 @@
 public class weapon {
-
-    private int durability;
+    private String name;
     private int range;
     private int damage;
 
-    public weapon(int dr, int r, int da) {
-        durability = dr;
+    public weapon(String n, int r, int da) {
+        name = n;
         range = r;
         damage = da;
     }
 
 
     /////GETTER METHODS\\\\\
-    public int GetDurability() { return durability; }
     public int GetRange() { return range; }
     public int GetDamage() { return damage; }
-
-    public int DecreaseDurability() {
-        if (--durability == 0)
-            damage = 0;
-        return durability; 
+    public String getName()
+    {
+     return name; 
     }
 
 }

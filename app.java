@@ -4,33 +4,32 @@ public class app {
 
     public static void main (String[] args) {
         Scanner scanner;
-        int level = 1;
+        int level = 0;
         
-        mapGenerator mg = new mapGenerator(20, 20);
+
         
-        char[][] screen = mg.map;
-        
-        player p = new player(5, "john", screen.length/2, 1);
+        player p = new player(5, "john", 0,0);
         
         while(true)
         {
+        level++;
 
-        mg = new mapGenerator(20, 20);
-        screen = mg.map;
+        mapGenerator mg = new mapGenerator(20, 40);
+        char[][] screen = mg.map;
         p.setX(screen.length/2);
         p.setY(3);
+        System.out.println("Level " + level);
+        screen[p.yPos][p.xPos] = '@';
         
 
 
-        // for (int i = 0; i < screen.length; i++) {
-        //     for (int j = 0; j < screen[0].length; j++) {
-        //         System.out.print(screen[i][j]);
-        //     }
-        //     System.out.print("\n");
-        // }
-
-
-
+        for (int i = 0; i < screen.length; i++) {
+            for (int j = 0; j < screen[0].length; j++) {
+                System.out.print(screen[i][j]);
+            }
+            System.out.print("\n");
+        }
+        
         while (true) {
             scanner = new Scanner(System.in);
             String input = scanner.nextLine();
@@ -77,9 +76,8 @@ public class app {
                     }
                     System.out.print("\n");
                 }
-                System.out.println(p.xPos);
-                System.out.println(p.yPos);
-                System.out.println(dir);
+                System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
+
             }
         }
         }
