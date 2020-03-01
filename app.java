@@ -5,10 +5,7 @@ public class app {
     public static void main (String[] args) {
         Scanner scanner;
         player p = new player(5, "john", 0, 0);
-        int level = 0;
-        int numOfTypesOfMonsters = 2;
-
-        
+        int level = 0;        
         while(true)
         {
         mapGenerator mg = new mapGenerator(20, 40);
@@ -16,8 +13,8 @@ public class app {
         p.setX(screen.length/2);
         p.setY(3);
         System.out.println("Level " + level);
-        screen[p.yPos][p.xPos] = '@';
-        System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
+        screen[p.yPos][p.xPos] = '@';System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
+        
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'h';
         int weaponGen = (int)(Math.random() *4) +1;
         if(weaponGen == 1)
@@ -28,24 +25,9 @@ public class app {
         {
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'T';
         }
+        System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
 
         Enemies enemies = new Enemies();
-
-        for (int i = 0; i < level; i++) {
-            int xPs = ((int)Math.random()*12*3)+2;
-            int yPs = ((int)Math.random()*6*3)+2;
-            int type = (int)Math.random()*3;
-            if (type == 1) {
-                Enemy enemy = new Enemy('O', 1, 1, xPs, yPs); // orc
-                enemies.addEnemy(enemy);
-            } else if (type == 2) {
-                Enemy enemy = new Enemy('G', 1, 2, xPs, yPs); // goblin
-                enemies.addEnemy(enemy);
-            } else if (type == 3) {
-                Enemy enemy = new Enemy('B', 3, 1, xPs, yPs); // behemoth
-                enemies.addEnemy(enemy);
-            }
-        }
 
         for (int i = 0; i < screen.length; i++) {
             for (int j = 0; j < screen[0].length; j++) {
