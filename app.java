@@ -4,15 +4,7 @@ public class app {
 
     public static void main (String[] args) {
         Scanner scanner;
-        int level = 0;
-        
-
-        
-        player p = new player(5, "john", 0,0);
-        
-        while(true)
-        {
-        level++;
+        mapGenerator mg = new mapGenerator(10, 20);
 
         mapGenerator mg = new mapGenerator(20, 40);
         char[][] screen = mg.map;
@@ -24,6 +16,7 @@ public class app {
         
         
 
+        Enemies enemies = new Enemies();
 
         for (int i = 0; i < screen.length; i++) {
             for (int j = 0; j < screen[0].length; j++) {

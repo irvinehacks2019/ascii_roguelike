@@ -13,10 +13,8 @@ public class Enemy
     hp = h;
     attack = 0;
     isDead = false;
-
     xPos = xP;
     yPos = yP;
-
     range = 1;
     character = c;
   }

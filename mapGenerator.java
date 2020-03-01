@@ -5,6 +5,7 @@ public class mapGenerator {
     public char[][] map;
     private int[][] walls;
     private boolean[][] mapChecker;
+    //private int[][] navigator;
     private char wall = '#';
     private char space = ' ';
     private char door = '-';
@@ -18,6 +19,12 @@ public class mapGenerator {
         mapChecker = new boolean[y][x];
         walls = new int[map.length / 3][ map[0].length / 3];
         fillMap();
+        for (int y0 = 0; y0 < map.length; y0++) {
+            for (int x0 = 0; x0 < map.length; x0++) {
+                //navigator[y0][x0] = (map[y0][x0] == '#' ? -1 : 0);
+            }
+        }
+        //navigator = PathFinder.findPath(navigator, map[0].length / 2, 3, map[0].length / 2, map.length - 1);
     }
 
     //DEBUGGING ONLY
@@ -48,7 +55,7 @@ public class mapGenerator {
 
         for (int y = 0; y < walls.length; y++) {
             for (int x = 0; x < walls[y].length; x++) {
-                walls[y][x] = (int)(Math.random() * 6);
+                walls[y][x] = (int)(Math.random() * 4);
                 if (walls[y][x] > 5)
                     walls[y][x] = 5;
             }
@@ -57,8 +64,10 @@ public class mapGenerator {
         //SAFE SPACE
         //walls[0]
         for (int x = 0; x < walls[0].length; x++) {
-            if (x > walls[0].length * 2/5 && x < walls[0].length * 3/5)
+            if (x > walls[0].length * 2/5 && x < walls[0].length * 3/5) {
                 walls[0][x] = 5;
+                walls[walls.length - 1][x] = 5;
+            }
         }        
 
         int xCoordinate, yCoordinate;
@@ -108,39 +117,29 @@ public class mapGenerator {
 
             }
         }
+
+
+        //Filling (navigator) with proper values
+        for (int y = 0; y < map.length; y++) {
+            for (int x = 0; x < map.length; x++) {
+                if (mapChecker[y][x] != true)
+                    mapChecker[y][x] = false;
+            }
+        }
     }
 
     private int getRelativeCoordinate(int num) {
         return 2 + 3 * num;
     }
 
-    private boolean findPath(int x1, int y1, int x2, int y2) {
-        mapChecker[y1][x1] = true;
-        boolean output = true;
-
-        if (x1 == x2 && y1 == y2)
-            return true;
-        else if (x1 == 0 || y1 == 0 || x1 == map[y2].length - 1 || y1 == map.length - 1)
-            return false;
-
-        if (map[y1][x1+1] == space && !mapChecker[y1][x1+1])
-            output = output && findPath(x1+1, y1, x2, y2);
-        if (map[y1][x1-1] == space && !mapChecker[y1][x1-1])
-            output = output && findPath(x1-1, y1, x2, y2);
-        if (map[y1+1][x1] == space && !mapChecker[y1+1][x1])
-            output = output && findPath(x1, y1+1, x2, y2);
-        if (map[y1-1][x1] == space && !mapChecker[y1-1][x1])
-            output = output && findPath(x1, y1-1, x2, y2);
-
-        return output;
-    }
+    //0 = space
+    //-1 = wall
 
 
 
     public static void main(String[] args) {
         mapGenerator mg = new mapGenerator(Integer.parseInt(args[0]), Integer.parseInt((args[1])));
         System.out.println(mg);
-        System.out.println(mg.wallsToString());
     }
 
 } 
