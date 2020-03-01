@@ -1,3 +1,5 @@
+package org.irvinehacks.ascii_rougelike;
+
 import java.util.ArrayList;
 
 public class Enemies {
