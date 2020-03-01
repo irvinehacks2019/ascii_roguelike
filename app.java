@@ -117,6 +117,7 @@
                         dir = 4;
                     } else if (input.equals(" ")) {
                         dir = -1; 
+                        p.attack(screen , enemies);
                     }
                     p.move(dir);
                     

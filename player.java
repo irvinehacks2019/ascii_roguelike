@@ -65,7 +65,7 @@ public class player {
         }
     }
 
-    public void attack (char[][] screen, Enemies enemies) {
+    public void attack(char[][] screen, Enemies enemies) {
         for (int i = yPos - playerWeapon.GetRange(); i < yPos + playerWeapon.GetRange(); i++) {
             for (int j = xPos - playerWeapon.GetRange(); j < xPos + playerWeapon.GetRange(); j++) {
                 if (screen[i][j] == 'O' || screen[i][j] == 'G' || screen[i][j] == 'B') {
