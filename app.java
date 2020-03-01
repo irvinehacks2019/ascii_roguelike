@@ -111,12 +111,6 @@
                         en.move('s'); 
                         mg.map[en.yPos][en.xPos] = en.character;
                     }              
-
-                    if (en.checkDead()) {
-                        en.setDamage(0);
-                        en.setChar(' ');
-                        screen[en.yPos][en.xPos] = ' ';
-                    }
                 }
 
                 if (input.equals("w") || input.equals("a") || input.equals("s") || input.equals("d") || input.equals(" ")) {
@@ -153,7 +147,7 @@
                     p.setWeapon(new weapon("Sword", 1, 2));
                     
                     
-                    if (screen[p.yPos][p.xPos] != mg.getWall()) {
+                    if (screen[p.yPos][p.xPos] != mg.getWall() ) {
                         screen[p.yPos][p.xPos] = '@';
                         if (dir != -1) {
                             screen[lastY][lastX] = ' ';
@@ -163,6 +157,13 @@
                         p.xPos = lastX;
                     }
 
+                    for (Enemy enemy : enemies.enemies) {
+                        if (enemy.isDead) {
+                            enemy.attack = 0;
+                            enemy.character = ' ';
+                            screen[enemy.yPos][enemy.xPos] = enemy.character;
+                        }
+                    }
 
 
 
