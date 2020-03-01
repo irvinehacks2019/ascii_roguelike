@@ -150,15 +150,6 @@
                     p.setWeapon(new weapon("Sword", 1, 2));
                     
                     
-                    if (screen[p.yPos][p.xPos] != mg.getWall() ) {
-                        screen[p.yPos][p.xPos] = '@';
-                        if (dir != -1) {
-                            screen[lastY][lastX] = ' ';
-                        }
-                    } else {
-                        p.yPos = lastY;
-                        p.xPos = lastX;
-                    }
 
                     for (Enemy enemy : enemies.enemies) {
                         if (enemy.isDead) {
@@ -166,6 +157,16 @@
                             enemy.character = ' ';
                             screen[enemy.yPos][enemy.xPos] = enemy.character;
                         }
+                    }
+                    
+                    if (screen[p.yPos][p.xPos] != mg.getWall() && screen[p.yPos][p.xPos] != 'O' && screen[p.yPos][p.xPos] != 'G' && screen[p.yPos][p.xPos] != 'B') {
+                        screen[p.yPos][p.xPos] = '@';
+                        if (dir != -1) {
+                            screen[lastY][lastX] = ' ';
+                        }
+                    } else {
+                        p.yPos = lastY;
+                        p.xPos = lastX;
                     }
 
 
