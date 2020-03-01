@@ -20,6 +20,20 @@ public class Enemy
     character = c;
   }
   
+  public String toString()
+  {
+    switch(character) {
+      case 'O':
+        return "Orc";
+      case 'G':
+        return "Goblin";
+      case 'B':
+        return "Behemoth";
+      default:
+        return "monster";
+    }
+  }
+
   public int attack()
   {
    return attack; 
@@ -36,8 +50,14 @@ public class Enemy
     {
       return;
     }
-    hp = hp - d;
+    hp -= d;
+
     isDead = (hp <= 0);
+
+    if (isDead) {
+      attack = 0;
+      character = ' ';
+    }
   }
   
   public void move(char c)

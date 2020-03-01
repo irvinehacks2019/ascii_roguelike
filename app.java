@@ -89,8 +89,10 @@
                     deltaY = Math.abs(p.yPos - en.yPos);
                     enemyIsNearPlayer = deltaX <= en.range && deltaY <= en.range;
 
-                    if (enemyIsNearPlayer)
-                        p.decreaseHealth();
+                    if (enemyIsNearPlayer) {
+                        p.decreaseHealth(en.attack);
+                        System.out.println(en + " delt " + en.attack + " damage to you!");
+                    }
                     else if (p.xPos > en.xPos && mg.map[en.yPos][en.xPos + 1] != mg.getWall()) {
                         mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('a');
@@ -130,6 +132,7 @@
                         dir = 4;
                     } else if (input.equals(" ")) {
                         dir = -1; 
+                        p.attack(screen, enemies);
                     }
                     p.move(dir);
                     
@@ -186,7 +189,14 @@
             }
             if(p.getHealth() < 1)
             {
-            System.out.println("Game Over");
+            String end = "";
+            end += "  _____                         ____                 \n";
+            end += " / ____|                       / __ \\                \n";
+            end += "| |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __ \n";
+            end += "| | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__| \n";
+            end += "| |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |   \n";
+            end += " \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|   ";
+            System.out.println(end);
             break;
             }
             }
