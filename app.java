@@ -6,14 +6,10 @@ public class app {
         Scanner scanner;
         player p = new player(5, "john", 0, 0);
         int level = 0;
-<<<<<<< HEAD
-        int numOfTypesOfMonsters = 2;
 
-=======
         
         while(true)
         {
->>>>>>> fa1ab0b7cf4fa01cc6c461ba41fc5615070f6770
         mapGenerator mg = new mapGenerator(20, 40);
         char[][] screen = mg.map;
         p.setX(screen.length/2);
@@ -22,9 +18,6 @@ public class app {
         screen[p.yPos][p.xPos] = '@';
         System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'h';
-<<<<<<< HEAD
-        
-=======
         int weaponGen = (int)(Math.random() *4) +1;
         if(weaponGen == 1)
         {
@@ -34,14 +27,13 @@ public class app {
         {
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'T';
         }
->>>>>>> fa1ab0b7cf4fa01cc6c461ba41fc5615070f6770
 
         Enemies enemies = new Enemies();
 
         for (int i = 0; i < level; i++) {
             int xPs = ((int)Math.random()*12*3)+2;
             int yPs = ((int)Math.random()*6*3)+2;
-            int type = (int)Math.random()*numOfTypesOfMonsters;
+            int type = (int)Math.random()*3;
             if (type == 1) {
                 Enemy enemy = new Enemy('O', 1, 1, xPs, yPs); // orc
                 enemies.addEnemy(enemy);
