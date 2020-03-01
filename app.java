@@ -14,8 +14,15 @@ public class app {
         System.out.println("Level " + level);
         screen[p.yPos][p.xPos] = '@';
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'h';
-        
-        
+        int weaponGen = (int)(Math.random() *4) +1;
+        if(weaponGen == 1)
+        {
+        screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'D';
+        }
+        if(weaponGen == 2)
+        {
+        screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'T';
+        }
 
         Enemies enemies = new Enemies();
 
@@ -56,6 +63,12 @@ public class app {
                 {
                    p.increaseHealth();
                 }
+                
+                if(screen[p.yPos][p.xPos] == 'D')
+                  p.setWeapon(new weapon("Bow", 2, 1));
+                
+                if(screen[p.yPos][p.xPos] == 'T')
+                  p.setWeapon(new weapon("Sword", 1, 2));
                  
                 
                 if (screen[p.yPos][p.xPos] != mg.getWall()) {
