@@ -110,7 +110,8 @@
                         mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('s'); 
                         mg.map[en.yPos][en.xPos] = en.character;
-                    }            
+                    }
+                    System.out.println("Enemy at: " + en.xPos + ", " + en.yPos);               
                 }
 
                 if (input.equals("w") || input.equals("a") || input.equals("s") || input.equals("d") || input.equals(" ")) {
@@ -128,7 +129,6 @@
                         dir = 4;
                     } else if (input.equals(" ")) {
                         dir = -1; 
-                        p.attack(screen, enemies);
                     }
                     p.move(dir);
                     
@@ -148,7 +148,7 @@
                     p.setWeapon(new weapon("Sword", 1, 2));
                     
                     
-                    if (screen[p.yPos][p.xPos] != mg.getWall() ) {
+                    if (screen[p.yPos][p.xPos] != mg.getWall()) {
                         screen[p.yPos][p.xPos] = '@';
                         if (dir != -1) {
                             screen[lastY][lastX] = ' ';
@@ -176,14 +176,7 @@
             }
             if(p.getHealth() < 1)
             {
-            String end = "";
-            end += "  _____                         ____                 \n";
-            end += " / ____|                       / __ \\                \n";
-            end += "| |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __ \n";
-            end += "| | |_ |/ _` | '_ ` _ \\ / _ \\ | |  | \\ \\ / / _ \\ '__| \n";
-            end += "| |__| | (_| | | | | | |  __/ | |__| |\\ V /  __/ |   \n";
-            end += " \\_____|\\__,_|_| |_| |_|\\___|  \\____/  \\_/ \\___|_|   ";
-            System.out.println(end);
+            System.out.println("Game Over");
             break;
             }
             }
