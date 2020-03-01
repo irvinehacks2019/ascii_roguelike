@@ -4,14 +4,11 @@ public class app {
 
     public static void main (String[] args) {
         Scanner scanner;
-<<<<<<< HEAD
-        mapGenerator mg = new mapGenerator(40, 80);
-=======
-        mapGenerator mg = new mapGenerator(14, 29);
->>>>>>> 7bb3315f920b15b780254dffdf1a831974c3cd37
+        mapGenerator mg = new mapGenerator(10, 20);
 
         player p = new player(5, "john");
         char[][] screen = mg.map;
+        Enemies enemies = new Enemies();
 
         while (true) {
             scanner = new Scanner(System.in);
