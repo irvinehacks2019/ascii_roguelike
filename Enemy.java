@@ -8,11 +8,12 @@ public class Enemy
   protected int range;
   protected char character;
   
-  public Enemy(char c, int h, int atk, int xP, int yP)
+  public Enemy(char c, int h, int atk, int r, int xP, int yP)
   {
     hp = h;
     attack = atk;
     isDead = false;
+    range = r;
     xPos = xP;
     yPos = yP;
     range = 1;

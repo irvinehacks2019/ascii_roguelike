@@ -15,7 +15,7 @@ public class app {
         char[][] screen = mg.map;
         p.setX(screen.length/2);
         p.setY(3);
-        System.out.println("Level " + level);
+        System.out.println("Level: " + ++level);
         screen[p.yPos][p.xPos] = '@';
         System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'h';
@@ -31,18 +31,21 @@ public class app {
 
         Enemies enemies = new Enemies();
 
+
         for (int i = 0; i < level; i++) {
-            int xPs = ((int)Math.random()*12*3)+2;
-            int yPs = ((int)Math.random()*6*3)+2;
-            int type = (int)Math.random()*numOfTypesOfMonsters;
+            int xPs = ((int)Math.random()*12*3)+2; //x-position
+            int yPs = ((int)Math.random()*6*3)+2;  //y-position
+            int type = (int)Math.random()*3;       //randomizes enemy type
+
+
             if (type == 1) {
-                Enemy enemy = new Enemy('O', 1, 1, xPs, yPs); // orc
+                Enemy enemy = new Enemy('O', 1, 1, 2, xPs, yPs); // orc
                 enemies.addEnemy(enemy);
             } else if (type == 2) {
-                Enemy enemy = new Enemy('G', 1, 2, xPs, yPs); // goblin
+                Enemy enemy = new Enemy('G', 1, 2, 1, xPs, yPs); // goblin
                 enemies.addEnemy(enemy);
             } else if (type == 3) {
-                Enemy enemy = new Enemy('B', 3, 1, xPs, yPs); // behemoth
+                Enemy enemy = new Enemy('B', 3, 1, 1, xPs, yPs); // behemoth
                 enemies.addEnemy(enemy);
             }
         }
@@ -57,6 +60,26 @@ public class app {
         while (true) {
             scanner = new Scanner(System.in);
             String input = scanner.nextLine();
+
+            boolean enemyIsNearPlayer;
+            int deltaX, deltaY;
+
+            for (Enemy en : enemies.enemies) {
+                deltaX = Math.abs(p.xPos - en.xPos);
+                deltaY = Math.abs(p.yPos - en.yPos);
+                enemyIsNearPlayer = deltaX <= en.range && deltaY <= en.range;
+
+                if (enemyIsNearPlayer)
+                    p.decreaseHealth();
+                else if (p.xPos > en.xPos && mg.map[en.yPos][en.xPos + 1] != mg.getWall())
+                    en.move('a');
+                else if (p.xPos < en.xPos && mg.map[en.yPos][en.xPos - 1] != mg.getWall())
+                    en.move('d');
+                else if (p.yPos > en.yPos && mg.map[en.yPos + 1][en.xPos] != mg.getWall())
+                    en.move('w');
+                else if (p.yPos < en.yPos && mg.map[en.yPos - 1][en.xPos] != mg.getWall())
+                    en.move('s');                
+            }
 
             if (input.equals("w") || input.equals("a") || input.equals("s") || input.equals("d") || input.equals(" ")) {
                 int lastX = p.xPos;
@@ -103,7 +126,11 @@ public class app {
                 }
 
 
-                // printing press
+                ////   ////   //  //   //  //////
+                // //  // //  //  //// //    //
+                ////   ////   //  // / //    //
+                //     // //  //  // ////    //
+                //     //  // //  //   //    //
                 for (int i = 0; i < screen.length; i++) {
                     for (int j = 0; j < screen[0].length; j++) {
                         System.out.print(screen[i][j]);

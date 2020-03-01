@@ -1,11 +1,8 @@
 import java.util.ArrayList;
 
 public class Enemies {
-    public Enemies () {
-        
-    }
 
-    ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    public ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
     public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
