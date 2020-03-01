@@ -5,10 +5,7 @@ public class app {
     public static void main (String[] args) {
         Scanner scanner;
         player p = new player(5, "john", 0, 0);
-        int level = 0;
-        int numOfTypesOfMonsters = 2;
-
-        
+        int level = 0;        
         while(true)
         {
         mapGenerator mg = new mapGenerator(20, 40);
@@ -16,8 +13,8 @@ public class app {
         p.setX(screen.length/2);
         p.setY(3);
         System.out.println("Level " + level);
-        screen[p.yPos][p.xPos] = '@';
-        System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
+        screen[p.yPos][p.xPos] = '@';System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
+        
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'h';
         int weaponGen = (int)(Math.random() *4) +1;
         if(weaponGen == 1)
@@ -28,6 +25,7 @@ public class app {
         {
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'T';
         }
+        System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
 
         Enemies enemies = new Enemies();
 
@@ -57,7 +55,7 @@ public class app {
             System.out.print("\n");
         }
         
-        while (true) {
+        while (p.getHealth() > 0) {
             scanner = new Scanner(System.in);
             String input = scanner.nextLine();
 
@@ -116,6 +114,11 @@ public class app {
                 System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
 
             }
+        }
+        if(p.getHealth() < 1)
+        {
+          System.out.println("Game Over");
+          break;
         }
         }
 
