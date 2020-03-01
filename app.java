@@ -6,7 +6,7 @@
             Scanner scanner;
             player p = new player(5, "john", 0, 0);
             int level = 0;     
-            System.out.println("|---CONTROLS---|\n| W - move up |\n| A - move left|\n| S - move down |\n| D - move right|\n| Space - attack |\n| Press ENTER to confirm action |\n|---LEGEND---|\n| D - bow |\n| T - sword |\n| h - health potion |\n| O - orc |\n| G - goblin |\n|B - behemoth|");
+            System.out.println("|----CONTROLS----|\n| W - move up    |\n| A - move left  |\n| S - move down  |\n| D - move right |\n| Space - attack |\n| Press ENTER to confirm action |\n|-------LEGEND-------|\n| D - bow            |\n| T - sword          |\n| h - health potion  |\n| O - orc            |\n| G - goblin         |\n|B - behemoth        |");
 
             //RUNS EVERY LEVEL RESET
             while(true) {
