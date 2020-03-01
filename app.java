@@ -147,7 +147,7 @@
                     p.setWeapon(new weapon("Sword", 1, 2));
                     
                     
-                    if (screen[p.yPos][p.xPos] != mg.getWall()) {
+                    if (screen[p.yPos][p.xPos] != mg.getWall() ) {
                         screen[p.yPos][p.xPos] = '@';
                         if (dir != -1) {
                             screen[lastY][lastX] = ' ';
