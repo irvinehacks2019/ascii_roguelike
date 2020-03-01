@@ -111,6 +111,12 @@
                         en.move('s'); 
                         mg.map[en.yPos][en.xPos] = en.character;
                     }              
+
+                    if (en.checkDead()) {
+                        en.setDamage(0);
+                        en.setChar(' ');
+                        screen[en.yPos][en.xPos] = ' ';
+                    }
                 }
 
                 if (input.equals("w") || input.equals("a") || input.equals("s") || input.equals("d") || input.equals(" ")) {
@@ -157,13 +163,6 @@
                         p.xPos = lastX;
                     }
 
-                    for (Enemy enemy : enemies) {
-                        if enemy.checkDead() {
-                            enemy.setDamage(0);
-                            enemy.setCharacter(' ');
-                            screen[enemy.yPos][enemy.xPos] = ' ';
-                        }
-                    }
 
 
 

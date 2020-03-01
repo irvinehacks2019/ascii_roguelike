@@ -35,7 +35,7 @@ public class Enemy
    return isDead; 
   }
 
-  public void setDamae(int atk) {
+  public void setDamage(int atk) {
     attack = atk;
   }
 
