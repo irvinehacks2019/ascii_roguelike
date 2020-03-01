@@ -68,7 +68,7 @@ public class player {
     public void attack (char[][] screen, Enemies enemies) {
         for (int i = yPos - playerWeapon.GetRange(); i < yPos + playerWeapon.GetRange(); i++) {
             for (int j = xPos - playerWeapon.GetRange(); j < xPos + playerWeapon.GetRange(); j++) {
-                if (screen[i][j] == 'e') {
+                if (screen[i][j] == 't') {
                     Enemy enemy = enemies.getEnemyByPosition(i, j);
                     enemy.takeDamage(playerWeapon.GetDamage());
                 }

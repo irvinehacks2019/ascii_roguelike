@@ -1,3 +1,5 @@
+// depreciated (just use Enemy 4head)
+
 public class Orc extends Enemy
 {
  public Orc(int x, int y)
