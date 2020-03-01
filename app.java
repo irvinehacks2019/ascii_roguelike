@@ -146,6 +146,15 @@
                         p.xPos = lastX;
                     }
 
+                    for (Enemy enemy : enemies) {
+                        if enemy.checkDead() {
+                            enemy.setDamage(0);
+                            enemy.setCharacter(' ');
+                            screen[enemy.yPos][enemy.xPos] = ' ';
+                        }
+                    }
+
+
 
                     ////   ////   //  //   //  //////
                     // //  // //  //  //// //    //
