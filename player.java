@@ -25,7 +25,8 @@ public class player {
     public weapon getWeapon() { return playerWeapon; }
     public int getHealthCap() { return healthCap; }
 
-    public int decreaseHealth() { return health--;}
+    public int decreaseHealth() { return --health;}
+    public int increaseHealth() { return ++health;}
     
     public void setX(int x)
     {

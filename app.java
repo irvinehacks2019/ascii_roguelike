@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.lang.Math;
 public class app {
 
     public static void main (String[] args) {
@@ -20,6 +20,8 @@ public class app {
         p.setY(3);
         System.out.println("Level " + level);
         screen[p.yPos][p.xPos] = '@';
+        screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'h';
+        
         
 
 
@@ -55,6 +57,13 @@ public class app {
                 if(screen[p.yPos][p.xPos] == '-')
                   break;
                 
+                if(screen[p.yPos][p.xPos] == 'h')
+                 if(p.getHealth() < p.getHealthCap())
+                {
+                   p.increaseHealth();
+                }
+                 
+                
                 if (screen[p.yPos][p.xPos] != mg.getWall()) {
                     screen[p.yPos][p.xPos] = '@';
                     if (dir != -1) {
@@ -64,9 +73,6 @@ public class app {
                     p.yPos = lastY;
                     p.xPos = lastX;
                 }
-
-                
-
 
 
                 // printing press
