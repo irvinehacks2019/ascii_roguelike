@@ -91,15 +91,26 @@
 
                     if (enemyIsNearPlayer)
                         p.decreaseHealth();
-                    else if (p.xPos > en.xPos && mg.map[en.yPos][en.xPos + 1] != mg.getWall())
-                        en.move('a'); 
-                    else if (p.xPos < en.xPos && mg.map[en.yPos][en.xPos - 1] != mg.getWall())
+                    else if (p.xPos > en.xPos && mg.map[en.yPos][en.xPos + 1] != mg.getWall()) {
+                        mg.map[en.yPos][en.xPos] = mg.getSpace();
+                        en.move('a');
+                        mg.map[en.yPos][en.xPos] = en.character;
+                    } 
+                    else if (p.xPos < en.xPos && mg.map[en.yPos][en.xPos - 1] != mg.getWall()) {
+                        mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('d');
-                    else if (p.yPos > en.yPos && mg.map[en.yPos + 1][en.xPos] != mg.getWall())
+                        mg.map[en.yPos][en.xPos] = en.character;
+                    }
+                    else if (p.yPos > en.yPos && mg.map[en.yPos + 1][en.xPos] != mg.getWall()) {
+                        mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('w');
-                    else if (p.yPos < en.yPos && mg.map[en.yPos - 1][en.xPos] != mg.getWall())
+                        mg.map[en.yPos][en.xPos] = en.character;
+                    }
+                    else if (p.yPos < en.yPos && mg.map[en.yPos - 1][en.xPos] != mg.getWall()) {
+                        mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('s'); 
-                    System.out.println("Enemy at: " + en.xPos + ", " + en.yPos);               
+                        mg.map[en.yPos][en.xPos] = en.character;
+                    }            
                 }
 
                 if (input.equals("w") || input.equals("a") || input.equals("s") || input.equals("d") || input.equals(" ")) {

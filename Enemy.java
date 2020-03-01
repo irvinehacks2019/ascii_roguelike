@@ -45,24 +45,24 @@ public class Enemy
     isDead = (hp <= 0);
   }
   
-  public void move(int dir)
+  public void move(char c)
   {
-    if(dir == 1)
+    if(c == 'w')
     {
       yPos++;
     }
     
-    if(dir == 2)
+    if(c == 's')
     {
      yPos--; 
     }
     
-    if(dir == 3)
+    if(c == 'a')
     {
       xPos++;
     }
     
-    if(dir == 4)
+    if(c == 'd')
     {
      xPos--; 
     }
