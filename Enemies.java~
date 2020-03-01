@@ -5,7 +5,7 @@ public class Enemies {
         
     }
 
-    ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    ArrayList<Enemy> enemies = new ArrayList<>();
 
     public void addEnemy(Enemy enemy) {
         enemies.add(enemy);

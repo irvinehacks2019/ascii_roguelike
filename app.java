@@ -4,7 +4,8 @@ public class app {
 
     public static void main (String[] args) {
         Scanner scanner;
-        mapGenerator mg = new mapGenerator(10, 20);
+        player p = new player(5, "john", 0, 0);
+        int level = 0;
 
         mapGenerator mg = new mapGenerator(20, 40);
         char[][] screen = mg.map;
@@ -82,4 +83,3 @@ public class app {
         }
 
     }
-}
