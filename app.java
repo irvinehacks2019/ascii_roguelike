@@ -89,8 +89,10 @@
                     deltaY = Math.abs(p.yPos - en.yPos);
                     enemyIsNearPlayer = deltaX <= en.range && deltaY <= en.range;
 
-                    if (enemyIsNearPlayer)
-                        p.decreaseHealth();
+                    if (enemyIsNearPlayer) {
+                        p.decreaseHealth(en.attack);
+                        System.out.println(en + " delt " + en.attack + " damage to you!");
+                    }
                     else if (p.xPos > en.xPos && mg.map[en.yPos][en.xPos + 1] != mg.getWall()) {
                         mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('a');
@@ -128,6 +130,7 @@
                         dir = 4;
                     } else if (input.equals(" ")) {
                         dir = -1; 
+                        p.attack(screen, enemies);
                     }
                     p.move(dir);
                     

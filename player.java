@@ -25,7 +25,7 @@ public class player {
     public weapon getWeapon() { return playerWeapon; }
     public int getHealthCap() { return healthCap; }
 
-    public int decreaseHealth() { return --health;}
+    public void decreaseHealth(int num) { health -= num;}
     public int increaseHealth() { return ++health;}
     
     public void setX(int x)
@@ -66,13 +66,23 @@ public class player {
     }
 
     public void attack(char[][] screen, Enemies enemies) {
-        for (int i = yPos - playerWeapon.GetRange(); i < yPos + playerWeapon.GetRange(); i++) {
-            for (int j = xPos - playerWeapon.GetRange(); j < xPos + playerWeapon.GetRange(); j++) {
-                if (screen[i][j] == 'O' || screen[i][j] == 'G' || screen[i][j] == 'B') {
-                    Enemy enemy = enemies.getEnemyByPosition(i, j);
-                    enemy.takeDamage(playerWeapon.GetDamage());
+        boolean attacked = false;
+
+        for (int i = yPos - playerWeapon.GetRange(); i <= yPos + playerWeapon.GetRange(); i++) {
+            for (int j = xPos - playerWeapon.GetRange(); j <= xPos + playerWeapon.GetRange(); j++) {
+                    try {   
+                        if (screen[i][j] == 'O' || screen[i][j] == 'G' || screen[i][j] == 'B') {                     
+                            Enemy enemy = enemies.getEnemyByPosition(j, i);
+                            System.out.println("Delt " + playerWeapon.GetDamage() + " to " + enemy);
+                            enemy.takeDamage(playerWeapon.GetDamage());
+                            attacked = true;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error - null attack");
                 }
             }
         }
+        if (!attacked)        
+            System.out.println("You attacked thin air!");
     }
 }
