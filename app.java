@@ -13,7 +13,8 @@ public class app {
         p.setX(screen.length/2);
         p.setY(3);
         System.out.println("Level " + level);
-        screen[p.yPos][p.xPos] = '@';System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
+        screen[p.yPos][p.xPos] = '@';
+      
         
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'h';
         int weaponGen = (int)(Math.random() *4) +1;
@@ -32,7 +33,7 @@ public class app {
         for (int i = 0; i < level; i++) {
             int xPs = ((int)Math.random()*12*3)+2;
             int yPs = ((int)Math.random()*6*3)+2;
-            int type = (int)Math.random()*3;
+            int type = (int)(Math.random()*3) + 1;
             if (type == 1) {
                 Enemy enemy = new Enemy('O', 1, 1, xPs, yPs); // orc
                 enemies.addEnemy(enemy);
