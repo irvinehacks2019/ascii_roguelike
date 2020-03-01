@@ -29,6 +29,24 @@
 
             Enemies enemies = new Enemies();
 
+        for (int i = 0; i < level; i++) {
+            int xPs = ((int)Math.random()*12*3)+2;
+            int yPs = ((int)Math.random()*6*3)+2;
+            int type = (int)(Math.random()*3) + 1;
+            if (type == 1) {
+                Enemy enemy = new Enemy('O', 1, 1, 2, xPs, yPs); // orc
+                enemies.addEnemy(enemy);
+                screen[yPs][xPs] = 'O';
+            } else if (type == 2) {
+                Enemy enemy = new Enemy('G', 1, 2, 1, xPs, yPs); // goblin
+                enemies.addEnemy(enemy);
+                screen[yPs][xPs] = 'G';
+            } else if (type == 3) {
+                Enemy enemy = new Enemy('B', 3, 1, 1, xPs, yPs); // behemoth
+                enemies.addEnemy(enemy);
+                screen[yPs][xPs] = 'B';
+            }
+        }
 
             for (int i = level; i > 0; i--) {
                 int xPs =  (int)(Math.random()*12*3)+2; //x-position
