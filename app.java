@@ -110,8 +110,7 @@
                         mg.map[en.yPos][en.xPos] = mg.getSpace();
                         en.move('s'); 
                         mg.map[en.yPos][en.xPos] = en.character;
-                    }
-                    System.out.println("Enemy at: " + en.xPos + ", " + en.yPos);               
+                    }              
                 }
 
                 if (input.equals("w") || input.equals("a") || input.equals("s") || input.equals("d") || input.equals(" ")) {
