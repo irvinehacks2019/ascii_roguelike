@@ -6,6 +6,7 @@ public class app {
         Scanner scanner;
         player p = new player(5, "john", 0, 0);
         int level = 0;
+        int numOfTypesOfMonsters = 2;
 
         
         while(true)
