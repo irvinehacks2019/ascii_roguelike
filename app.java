@@ -15,6 +15,7 @@ public class app {
         p.setY(3);
         System.out.println("Level " + level);
         screen[p.yPos][p.xPos] = '@';
+        System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'h';
         int weaponGen = (int)(Math.random() *4) +1;
         if(weaponGen == 1)
