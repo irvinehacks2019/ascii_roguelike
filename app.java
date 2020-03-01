@@ -6,7 +6,8 @@
             Scanner scanner;
             player p = new player(5, "john", 0, 0);
             int level = 0;     
-            
+            System.out.println("|----CONTROLS----|\n| W - move up    |\n| A - move left  |\n| S - move down  |\n| D - move right |\n| Space - attack |\n| Press ENTER to confirm action |\n|-------LEGEND-------|\n| D - bow            |\n| T - sword          |\n| h - health potion  |\n| O - orc            |\n| G - goblin         |\n|B - behemoth        |");
+
             //RUNS EVERY LEVEL RESET
             while(true) {
             mapGenerator mg = new mapGenerator(20, 40);
@@ -152,15 +153,6 @@
                     p.setWeapon(new weapon("Sword", 1, 2));
                     
                     
-                    if (screen[p.yPos][p.xPos] != mg.getWall() ) {
-                        screen[p.yPos][p.xPos] = '@';
-                        if (dir != -1) {
-                            screen[lastY][lastX] = ' ';
-                        }
-                    } else {
-                        p.yPos = lastY;
-                        p.xPos = lastX;
-                    }
 
                     for (Enemy enemy : enemies.enemies) {
                         if (enemy.isDead) {
@@ -168,6 +160,16 @@
                             enemy.character = ' ';
                             screen[enemy.yPos][enemy.xPos] = enemy.character;
                         }
+                    }
+
+                    if (screen[p.yPos][p.xPos] != mg.getWall() && screen[p.yPos][p.xPos] != 'O' && screen[p.yPos][p.xPos] != 'G' && screen[p.yPos][p.xPos] != 'B') {
+                        screen[p.yPos][p.xPos] = '@';
+                        if (dir != -1) {
+                            screen[lastY][lastX] = ' ';
+                        }
+                    } else {
+                        p.yPos = lastY;
+                        p.xPos = lastX;
                     }
 
 
