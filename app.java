@@ -5,10 +5,7 @@ public class app {
     public static void main (String[] args) {
         Scanner scanner;
         player p = new player(5, "john", 0, 0);
-        int level = 0;
-        int numOfTypesOfMonsters = 2;
-
-        
+        int level = 0;        
         while(true)
         {
         mapGenerator mg = new mapGenerator(20, 40);
@@ -28,6 +25,7 @@ public class app {
         {
         screen[(int)(Math.random() * 18) + 1][(int)(Math.random() * 38) + 1] = 'T';
         }
+        System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
 
         Enemies enemies = new Enemies();
 
@@ -37,16 +35,18 @@ public class app {
             int yPs = ((int)Math.random()*6*3)+2;  //y-position
             int type = (int)Math.random()*3;       //randomizes enemy type
 
-
             if (type == 1) {
                 Enemy enemy = new Enemy('O', 1, 1, 2, xPs, yPs); // orc
                 enemies.addEnemy(enemy);
+                screen[yPs][xPs] = 'O';
             } else if (type == 2) {
                 Enemy enemy = new Enemy('G', 1, 2, 1, xPs, yPs); // goblin
                 enemies.addEnemy(enemy);
+                screen[yPs][xPs] = 'G';
             } else if (type == 3) {
                 Enemy enemy = new Enemy('B', 3, 1, 1, xPs, yPs); // behemoth
                 enemies.addEnemy(enemy);
+                screen[yPs][xPs] = 'B';
             }
         }
 
@@ -57,7 +57,7 @@ public class app {
             System.out.print("\n");
         }
         
-        while (true) {
+        while (p.getHealth() > 0) {
             scanner = new Scanner(System.in);
             String input = scanner.nextLine();
 
@@ -140,6 +140,11 @@ public class app {
                 System.out.println("Health: " + p.getHealth() + "/" + p.getHealthCap() + " Weapon: " + p.getWeapon().getName());
 
             }
+        }
+        if(p.getHealth() < 1)
+        {
+          System.out.println("Game Over");
+          break;
         }
         }
 
