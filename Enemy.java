@@ -1,12 +1,12 @@
 public class Enemy
 {
-  protected int hp;
-  protected int attack;
-  protected boolean isDead;
-  protected int xPos;
-  protected int yPos;
-  protected int range;
-  protected char character;
+  public int hp;
+  public int attack;
+  public boolean isDead;
+  public int xPos;
+  public int yPos;
+  public int range;
+  public char character;
   
   public Enemy(char c, int h, int atk, int r, int xP, int yP)
   {
