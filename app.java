@@ -112,6 +112,8 @@
                         mg.map[en.yPos][en.xPos] = en.character;
                     }              
                 }
+                
+                screen[p.yPos][p.xPos] = '@';
 
                 if (input.equals("w") || input.equals("a") || input.equals("s") || input.equals("d") || input.equals(" ")) {
                     int lastX = p.xPos;
