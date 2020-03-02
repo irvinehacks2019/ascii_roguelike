@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'edu.sc.seis.launch4j' version '2.4.6'
+}
+
+group 'org.irvinehacks'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+launch4j {
+    outfile = 'AsciiRougelike.exe'
+    mainClassName = 'corg.irvinehacks.App'
+}

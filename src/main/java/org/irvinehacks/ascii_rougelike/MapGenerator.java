@@ -1,6 +1,6 @@
-import java.lang.Math;
+package org.irvinehacks.ascii_rougelike;
 
-public class mapGenerator {
+public class MapGenerator {
 
     public char[][] map;
     private int[][] walls;
@@ -10,14 +10,10 @@ public class mapGenerator {
     private char space = ' ';
     private char door = '-';
 
-    public char getWall() { return wall; } 
-    public char getSpace() { return space; }
-    public char[][] getMap() { return map; }
-
-    public mapGenerator(int y, int x) {
+    public MapGenerator(int y, int x) {
         map = new char[y][x];
         mapChecker = new boolean[y][x];
-        walls = new int[map.length / 3][ map[0].length / 3];
+        walls = new int[map.length / 3][map[0].length / 3];
         fillMap();
         for (int y0 = 0; y0 < map.length; y0++) {
             for (int x0 = 0; x0 < map.length; x0++) {
@@ -25,6 +21,18 @@ public class mapGenerator {
             }
         }
         //navigator = PathFinder.findPath(navigator, map[0].length / 2, 3, map[0].length / 2, map.length - 1);
+    }
+
+    public char getWall() {
+        return wall;
+    }
+
+    public char getSpace() {
+        return space;
+    }
+
+    public char[][] getMap() {
+        return map;
     }
 
     //DEBUGGING ONLY
@@ -36,7 +44,7 @@ public class mapGenerator {
             }
             output += "\n";
         }
-        return output;        
+        return output;
     }
 
     public String toString() {
@@ -49,13 +57,14 @@ public class mapGenerator {
         }
         return output;
     }
+
     private void fillMap() {
         boolean isXEdge = false;
         boolean isYEdge = false;
 
         for (int y = 0; y < walls.length; y++) {
             for (int x = 0; x < walls[y].length; x++) {
-                walls[y][x] = (int)(Math.random() * 4);
+                walls[y][x] = (int) (Math.random() * 4);
                 if (walls[y][x] > 5)
                     walls[y][x] = 5;
             }
@@ -64,11 +73,11 @@ public class mapGenerator {
         //SAFE SPACE
         //walls[0]
         for (int x = 0; x < walls[0].length; x++) {
-            if (x > walls[0].length * 2/5 && x < walls[0].length * 3/5) {
+            if (x > walls[0].length * 2 / 5 && x < walls[0].length * 3 / 5) {
                 walls[0][x] = 5;
                 walls[walls.length - 1][x] = 5;
             }
-        }        
+        }
 
         int xCoordinate, yCoordinate;
         for (int y = 0; y < walls.length; y++) {
@@ -80,12 +89,12 @@ public class mapGenerator {
                     case 1:
                         map[yCoordinate + 1][xCoordinate - 1] = wall; //LOW-LEFT
                         map[yCoordinate][xCoordinate - 1] = wall; //LEFT
-                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT          
+                        map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
                         break;
                     case 2:
                         map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
                         map[yCoordinate - 1][xCoordinate - 1] = wall; //UP-LEFT
-                        map[yCoordinate - 1][xCoordinate] = wall; //UP                         
+                        map[yCoordinate - 1][xCoordinate] = wall; //UP
                         break;
                     case 3:
                         map[yCoordinate - 1][xCoordinate + 1] = wall; //UP-RIGHT
@@ -103,7 +112,7 @@ public class mapGenerator {
                 }
             }
         }
-        
+
         //DOOR
         for (int y = 0; y < map.length; y++) {
             for (int x = 0; x < map[y].length; x++) {
@@ -111,7 +120,7 @@ public class mapGenerator {
                 isYEdge = y == 0 || y == map.length - 1;
                 if (isXEdge || isYEdge) {
                     map[y][x] = wall;
-                    if (x > map[y].length * 2/5 && x < map[y].length * 3/5 && y != 0)
+                    if (x > map[y].length * 2 / 5 && x < map[y].length * 3 / 5 && y != 0)
                         map[y][x] = door;
                 }
 
@@ -136,10 +145,4 @@ public class mapGenerator {
     //-1 = wall
 
 
-
-    public static void main(String[] args) {
-        mapGenerator mg = new mapGenerator(Integer.parseInt(args[0]), Integer.parseInt((args[1])));
-        System.out.println(mg);
-    }
-
-} 
+}
